@@ -56,7 +56,8 @@ namespace FirstPersonTestProject.Gameplay
             LockMouse ();
         }
         
-        void Update () {
+        void Update () 
+        {
             //вращение камеры
             transform.Rotate (Vector3.up * Input.GetAxis ("Mouse X") * _mouseSensitivityX);
             _verticalLookRotation += Input.GetAxis ("Mouse Y") * _mouseSensitivityY;
@@ -69,12 +70,10 @@ namespace FirstPersonTestProject.Gameplay
             _moveDistance = Vector3.SmoothDamp (_moveDistance, targetMoveAmount, ref _smoothMove, 0.15f);
 
             //прыжок
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                if(_grounded) {
+            if(Input.GetKeyDown(KeyCode.Space)) 
+                if(_grounded) 
                     _rigidbody.AddForce(transform.up * _jumpForce);
-                }
-            }
-
+                
             Ray ray = new Ray(transform.position, -transform.up);
             RaycastHit hit;
 
@@ -92,7 +91,8 @@ namespace FirstPersonTestProject.Gameplay
             }
         }
 
-        void FixedUpdate() {
+        void FixedUpdate() 
+        {
             _rigidbody.MovePosition(_rigidbody.position + transform.TransformDirection(_moveDistance) * Time.fixedDeltaTime);
         }
 
